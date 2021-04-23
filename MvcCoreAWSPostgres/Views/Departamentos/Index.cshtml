@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Departamento>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-action="SeleccionMultiple"
+       asp-controller="Departamentos">
+        Múltiples Empleados
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localidad)
+            </th>
+            <th>Imagen</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localidad)
+                </td>
+                <td>
+                    <img src="~/images/@item.Imagen"
+                         class="img-thumbnail"
+                         style="width: 150px;height:150px;"/>
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Departamentos", new { deptno = item.Numero }) |
+                    @Html.ActionLink("Details", "Details", "Departamentos", new { deptno = item.Numero }) |
+                    @Html.ActionLink("Delete", "Delete", "Departamentos", new { deptno = item.Numero })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
